@@ -7,7 +7,8 @@ var
     environment = process.env.NODE_ENV = process.env.NODE_ENV || 'production',
     app = require('./app.js'),
     cardReader = require('./lib/cardReader'),
-    leaderboard = require('./lib/leaderboard');
+    leaderboard = require('./lib/leaderboard'),
+    bodyParser = require('body-parser');
 
 getConfig = require('./config');
 config = getConfig[environment];
@@ -34,22 +35,23 @@ player = {};
 io = io.listen(config.wsPort);
 console.log(chalk.green('Websocket Server: Listening on port ' + config.wsPort));
 
-io.configure(function() {
-    io.set('log level', 2);
+app.use(function(req, res, next) {
+  console.log('GOT REQUEST Z0MG');
+  next();
 });
 
 app.get('/', function(req, res) {
-    
+
     delete require.cache[path.resolve('./versions/js.json')];
     delete require.cache[path.resolve('./versions/css.json')];
-    
+
     res.render('home.jade', {
         title: 'Ping Pong',
         metaDesc: 'Ping Pong',
         JSVersions: require('./versions/js'),
         CSSVersions: require('./versions/css')
     });
-    
+
 });
 
 app.get('/leaderboard', function(req, res) {
@@ -58,6 +60,20 @@ app.get('/leaderboard', function(req, res) {
         .then(function(players) {
             res.json(players.toJSON());
         });
+});
+
+app.use(bodyParser.json()); // for parsing application/json
+
+app.post('/rfid', function(req, res) {
+  console.log(req);
+  console.log('New read', req.body);
+  game.addPlayerByRfid(req.body.rfid, req.body.position);
+  res.send(200);
+});
+
+app.post('/score', function(req, res) {
+  game.feelerPressed({ feeler: req.body.feeler });
+  res.send(200);
 });
 
 app.listen(config.clientPort);
@@ -75,13 +91,17 @@ io.sockets.on('connection', function(client) {
 });
 
 core.on('scored', game.feelerPressed);
-core.on('ping', game.feelersPingReceived);    
+core.on('ping', game.feelersPingReceived);
 core.on('batteryLow', game.batteryLow);
 
 core.on('online', function() {
     game.feelersOnline();
     game.feelerStatus();
     game.feelersPingReceived();
+});
+
+core.on('error', function(err) {
+  console.error(err);
 });
 
 cardReader.on('read', function(data) {
