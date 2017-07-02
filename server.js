@@ -72,7 +72,7 @@ app.post('/rfid', function(req, res) {
 });
 
 app.post('/score', function(req, res) {
-  game.feelerPressed({ feeler: req.body.feeler });
+  game.feelerPressed({ feeler: req.body.position });
   res.send(200);
 });
 
