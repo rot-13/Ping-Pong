@@ -27,7 +27,7 @@ module.exports = {
       user : 'pi',
       host : '10.0.0.131',
       ref  : 'origin/master',
-      repo : 'git@github.com:rot-13/Ping-Pong.git',
+      repo : 'https://github.com/rot-13/Ping-Pong.git',
       path : '/home/pi/Ping-Pong/production',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     }
