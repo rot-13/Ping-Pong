@@ -630,6 +630,10 @@ gameController.prototype.batteryLow = function() {
     io.sockets.emit('core.batteryLow');
 };
 
+gameController.prototype.battery = function(position, level) {
+    io.sockets.emit('feelers.battery',  { position: position, level: level });
+};
+
 
 
 /**

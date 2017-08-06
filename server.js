@@ -70,6 +70,11 @@ app.post('/score', function(req, res) {
   res.send(200);
 });
 
+app.post('/battery', function (req, res) {
+    game.battery(req.body.position, req.body.level);
+    res.send(200);
+});
+
 app.listen(config.clientPort);
 console.log(chalk.green('Web Server: Listening on port ' + config.clientPort));
 

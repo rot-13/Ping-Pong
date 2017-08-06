@@ -75,6 +75,7 @@ var GameComponent = module.exports = React.createClass({
         node.socket.on('feelers.disconnect', _this.tableDisconnected);
         node.socket.on('feelers.connect', _this.tableConnected);
         node.socket.on('core.batteryLow', _this.tableBatteryLow);
+        node.socket.on('feelers.battery', _this.batteryLevel);
         
         node.socket.on('cardReader.connect', _this.cardReaderConnected);
         node.socket.on('cardReader.disconnect', _this.cardReaderDisconnected);
@@ -241,6 +242,9 @@ var GameComponent = module.exports = React.createClass({
         });
     },
     
+    batteryLevel: function(data) {
+        console.log(data);
+    },
     
     
     queueSound: function(sound, offset, cb) {
