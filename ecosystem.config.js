@@ -29,7 +29,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'https://github.com/rot-13/Ping-Pong.git',
       path : '/home/pi/Ping-Pong/production',
-      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
+      'post-deploy' : 'npm install && ./node_modules/knex/lib/bin/cli.js migrate:latest && pm2 reload ecosystem.config.js --env production'
     }
   }
 };
