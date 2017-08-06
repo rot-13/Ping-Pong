@@ -561,6 +561,7 @@ gameController.prototype.leadingPlayer = function() {
  * Is the specified player currently playing?
  */
 gameController.prototype.playerInGame = function(playerID) {
+    console.log('xxx', players)
     return players.some(function(player) {
         return player.id == playerID;
     });
