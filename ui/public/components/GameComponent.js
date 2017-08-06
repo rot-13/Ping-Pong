@@ -15,6 +15,7 @@ var
     PlayerComponent = require('./PlayerComponent'),
     StatusComponent = require('./StatusComponent'),
     StatusIndicatorComponent = require('./StatusIndicatorComponent'),
+    BatteryIndicator = require('./BatteryIndicator')
     StatsComponent = require('./StatsComponent'),
     soundPath = config.clientUrl + '/sounds/',
     soundQueue = [],
@@ -243,7 +244,11 @@ var GameComponent = module.exports = React.createClass({
     },
     
     batteryLevel: function(data) {
-        console.log(data);
+        if (data.position === 0) {
+            this.setState({ level0: data.level });
+        } else if (data.position === 1) {
+            this.setState({ level1: data.level });
+        }
     },
     
     
@@ -333,6 +338,8 @@ var GameComponent = module.exports = React.createClass({
                 <div className='status-indicators'>
                     <StatusIndicatorComponent state={this.state.table} />
                     <StatusIndicatorComponent state={this.state.cardReader} />
+                    <BatteryIndicator level={Math.floor(this.state.level0)} />
+                    <BatteryIndicator level={Math.floor(this.state.level1)} />
                 </div>
             </div>
         );
