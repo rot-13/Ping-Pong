@@ -15,7 +15,7 @@ var
     PlayerComponent = require('./PlayerComponent'),
     StatusComponent = require('./StatusComponent'),
     StatusIndicatorComponent = require('./StatusIndicatorComponent'),
-    BatteryIndicator = require('./BatteryIndicator')
+    BatteryIndicator = require('./BatteryIndicator'),
     StatsComponent = require('./StatsComponent'),
     soundPath = config.clientUrl + '/sounds/',
     soundQueue = [],
