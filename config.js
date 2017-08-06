@@ -1,17 +1,17 @@
 module.exports = {
     development: {
-        clientUrl: undefined,
-        clientPort: undefined,
-        wsPort: undefined,
-        cardReaderPort: undefined,
+        clientUrl: 'http://10.0.0.176',
+        clientPort: 3000,
+        wsPort: 31385,
+        cardReaderPort: 31386,
         database: {
             client: 'mysql',
             connection: {
-                host: undefined,
-                port: undefined,
-                user: undefined,
-                password: undefined,
-                database: undefined,
+                host: '127.0.0.1',
+                port: '3306',
+                user: 'pingpong',
+                password: 'pingpong',
+                database: 'pingpong',
             },
             migrations: {
                 directory: __dirname + '/migrations',
@@ -21,32 +21,32 @@ module.exports = {
     },
     production: {
         clientUrl: undefined,
-        clientPort: undefined,
-        wsPort: undefined,
+        clientPort: 3000,
+        wsPort: 31385,
         database: {
             client: 'mysql',
             connection: {
-                host: undefined,
-                port: undefined,
-                user: undefined,
-                password: undefined,
-                database: undefined,
+                host: '127.0.0.1',
+                port: 3306,
+                user: 'pingpong',
+                password: 'pingpong',
+                database: 'pingpong',
             },
             migrations: {
                 directory: __dirname + '/migrations',
                 tableName: 'migrations'
             }
         },
-        cardReaderPort: undefined
+        cardReaderPort: 31386
     },
     global: {
         sparkCore: {
             accessToken: undefined,
             id: undefined
         },
-        serverSwitchLimit: 5, // How many points before service switches
-        serverSwitchThreshold: 20, // When both players have reached this threshold, the server switches every time
-        maxScore: 21,
+        serverSwitchLimit: 2, // How many points before service switches
+        serverSwitchThreshold: 10, // When both players have reached this threshold, the server switches every time
+        maxScore: 11,
         mustWinBy: 2,
         minPlayers: 2,
         maxPlayers: 2,
