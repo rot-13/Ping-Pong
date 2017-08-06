@@ -561,9 +561,8 @@ gameController.prototype.leadingPlayer = function() {
  * Is the specified player currently playing?
  */
 gameController.prototype.playerInGame = function(playerID) {
-    console.log('xxx', players)
-    return players.some(function(player) {
-        return player.id == playerID;
+    return Object.keys(players).some(function(player) {
+        return players[player].id == playerID;
     });
 };
 
@@ -573,7 +572,7 @@ gameController.prototype.playerInGame = function(playerID) {
  * Have the minimum quantity of players been added?
  */
 gameController.prototype.minPlayersAdded = function() {
-    return players.length >= settings.minPlayers;
+    return Object.keys(players).length >= settings.minPlayers;
 };
 
 
