@@ -33,7 +33,7 @@ var BatteryIndicator = module.exports = React.createClass({
     
     
     render: function() {
-        return <div className="battery-indicator">%{this.props.level == null ? '??' : this.props.level}</div>;   
+        return <div className="battery-indicator">%{this.props.level == null ? '??' : Math.floor(this.props.level)}</div>;   
     }
     
 

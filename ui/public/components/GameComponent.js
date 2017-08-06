@@ -338,8 +338,8 @@ var GameComponent = module.exports = React.createClass({
                 <div className='status-indicators'>
                     <StatusIndicatorComponent state={this.state.table} />
                     <StatusIndicatorComponent state={this.state.cardReader} />
-                    <BatteryIndicator level={Math.floor(this.state.level0)} />
-                    <BatteryIndicator level={Math.floor(this.state.level1)} />
+                    <BatteryIndicator level={this.state.level0} />
+                    <BatteryIndicator level={this.state.level1} />
                 </div>
             </div>
         );
