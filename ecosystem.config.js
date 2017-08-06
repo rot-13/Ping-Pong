@@ -25,7 +25,7 @@ module.exports = {
   deploy : {
     production : {
       user : 'pi',
-      host : '10.0.0.131',
+      host : '10.0.0.159',
       ref  : 'origin/master',
       repo : 'https://github.com/rot-13/Ping-Pong.git',
       path : '/home/pi/Ping-Pong/production',
