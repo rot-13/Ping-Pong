@@ -20,7 +20,7 @@ module.exports = {
         }
     },
     production: {
-        clientUrl: undefined,
+        clientUrl: 'http://pingpong.local',
         clientPort: 3000,
         wsPort: 31385,
         database: {
