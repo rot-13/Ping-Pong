@@ -35,11 +35,6 @@ player = {};
 io = io.listen(config.wsPort);
 console.log(chalk.green('Websocket Server: Listening on port ' + config.wsPort));
 
-app.use(function(req, res, next) {
-  console.log('GOT REQUEST Z0MG');
-  next();
-});
-
 app.get('/', function(req, res) {
 
     delete require.cache[path.resolve('./versions/js.json')];
@@ -65,7 +60,6 @@ app.get('/leaderboard', function(req, res) {
 app.use(bodyParser.json()); // for parsing application/json
 
 app.post('/rfid', function(req, res) {
-  console.log(req);
   console.log('New read', req.body);
   game.addPlayerByRfid(req.body.rfid, req.body.position);
   res.send(200);
